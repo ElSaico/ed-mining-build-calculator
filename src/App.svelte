@@ -94,8 +94,8 @@
 </script>
 
 <main class="container flex flex-col mx-auto gap-4 p-4 border-4 bg-orange-1 text-orange-5 font-text">
-  <h1 class="text-center text-2xl font-caps">Mining Build Calculator v0.3.1</h1>
-  <h2 class="text-center">Originally created by /u/skyfishgoo</h2>
+  <h1 class="text-center text-2xl font-caps">Mining Build Calculator v0.4</h1>
+  <h2 class="text-center">Originally created by <a href="https://www.reddit.com/user/skyfishgoo" class="text-yellow-5">u/skyfishgoo</a></h2>
 
   <div class="flex justify-center gap-16">
     <table class="text-center font-caps">
