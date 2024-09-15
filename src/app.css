@@ -10,9 +10,11 @@
     @font-face {
         font-family: 'Sintony';
         src: url(/Sintony.woff2) format('woff2');
+        size-adjust: 87.5%;
     }
     @font-face {
         font-family: 'Telegrama';
         src: url(/Telegrama.woff2) format('woff2');
+        size-adjust: 87.5%;
     }
 }
