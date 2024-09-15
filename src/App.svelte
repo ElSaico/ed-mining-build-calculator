@@ -82,8 +82,8 @@
   );
 
   const score = derived([hatchDistance, pdSurplus, rockPercent], ([$hatchDistance, $pdSurplus, $rockPercent]) => {
-    const distanceRate = (600 - $hatchDistance) / 500;
-    const surplusRate = $pdSurplus === Infinity || $pdSurplus > 22 ? 1 : ($pdSurplus + 33) / 55;
+    const distanceRate = (1200 - $hatchDistance) / 500;
+    const surplusRate = ($pdSurplus === Infinity || $pdSurplus > 22) ? 1 : ($pdSurplus + 33) / 55;
     return (distanceRate + surplusRate + $rockPercent) / 3;
   });
 
@@ -205,10 +205,10 @@
         <tr>
           <td>1D</td>
           <td>2D</td>
-          <td>1D</td>
-          <td>3D</td>
-          <td>5D</td>
-          <td>7D</td>
+          <td>1A</td>
+          <td>3A</td>
+          <td>5A</td>
+          <td>7A</td>
         </tr>
       </tfoot>
     </table>
