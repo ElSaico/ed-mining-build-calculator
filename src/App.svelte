@@ -1,22 +1,13 @@
 <script>
   import { derived, writable } from "svelte/store";
 
-  const yieldRates = [
-    {
-      NoRES: 10,
-      LoRES: 11,
-      RES: 12,
-      HiRES: 13.5,
-      HazRES: 14.5,
-    },
-    {
-      NoRES: 35,
-      LoRES: 38.5,
-      RES: 42,
-      HiRES: 47.25,
-      HazRES: 50.75,
-    },
-  ];
+  const yieldRates = {
+    NoRES: 35,
+    LoRES: 38.5,
+    RES: 42,
+    HiRES: 47.25,
+    HazRES: 50.75,
+  };
   const laserDraw1d = 1.5;
   const laserDraw2d = 3;
   const fragRate1d = 8.5 / 60;
@@ -33,7 +24,6 @@
   let collectors7d = writable(0);
   
   let zone = writable('NoRES');
-  let probe = writable(true);
 
   const laserDraw = derived(
     [lasers1d, lasers2d],
@@ -46,8 +36,8 @@
   );
 
   const averageYield = derived(
-    [probe, zone],
-    ([$probe, $zone]) => yieldRates[Number($probe)][$zone]
+    zone,
+    ($zone) => yieldRates[$zone]
   );
 
   const emptyTimePd = derived(
@@ -222,21 +212,15 @@
         </tr>
       </tfoot>
     </table>
-  </div>
-
-  <div class="flex justify-end font-caps font-bold gap-4">
-    <div>
-      Zone?
-      <select class="bg-black font-text" bind:value={$zone}>
+    <div class="flex-col">
+      <div class="font-caps font-bold text-center p-px border-x-4 border-b-4 border-orange-5">Zone</div>
+      <select class="bg-black font-bold text-center m-0.5" bind:value={$zone}>
         <option>NoRES</option>
         <option>LoRES</option>
         <option>RES</option>
         <option>HiRES</option>
         <option>HazRES</option>
       </select>
-    </div>
-    <div>
-      Probe? <input type="checkbox" bind:checked={$probe} />
     </div>
   </div>
 
