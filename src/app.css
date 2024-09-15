@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'EuroCaps';
+        src: url(/EuroCaps.woff2) format('woff2');
+    }
+    @font-face {
+        font-family: 'Sintony';
+        src: url(/Sintony.woff2) format('woff2');
+    }
+    @font-face {
+        font-family: 'Telegrama';
+        src: url(/Telegrama.woff2) format('woff2');
+    }
+}
