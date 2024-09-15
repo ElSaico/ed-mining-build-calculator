@@ -22,14 +22,14 @@
   const fragRate1d = 8.5 / 60;
   const fragRate2d = 25.1 / 60;
 
-  let pdCapacity = writable(110.6);
-  let pdRecharge = writable(10.8);
+  let pdCapacity = writable();
+  let pdRecharge = writable();
 
   let lasers1d = writable(0);
-  let lasers2d = writable(6);
-  let collectors1d = writable(4);
+  let lasers2d = writable(0);
+  let collectors1d = writable(0);
   let collectors3d = writable(0);
-  let collectors5d = writable(2);
+  let collectors5d = writable(0);
   let collectors7d = writable(0);
   
   let zone = writable('NoRES');
@@ -83,7 +83,7 @@
   const pdSurplus = derived(
     [emptyTimePd, emptyTimeRock, fragRate],
     ([$emptyTimePd, $emptyTimeRock, $fragRate]) =>
-      $emptyTimePd > 0 ? '∞' : (Math.abs($emptyTimePd) < $emptyTimeRock ? 0 : (Math.abs($emptyTimePd) - $emptyTimeRock) * $fragRate)
+      $emptyTimePd > 0 ? Infinity : (Math.abs($emptyTimePd) < $emptyTimeRock ? 0 : (Math.abs($emptyTimePd) - $emptyTimeRock) * $fragRate)
   );
 
   const hatchDistance = derived(
@@ -93,7 +93,7 @@
 
   const score = derived([hatchDistance, pdSurplus, rockPercent], ([$hatchDistance, $pdSurplus, $rockPercent]) => {
     const distanceRate = (600 - $hatchDistance) / 500;
-    const surplusRate = $pdSurplus === "∞" || $pdSurplus > 22 ? 1 : ($pdSurplus + 33) / 55;
+    const surplusRate = $pdSurplus === Infinity || $pdSurplus > 22 ? 1 : ($pdSurplus + 33) / 55;
     return (distanceRate + surplusRate + $rockPercent) / 3;
   });
 
@@ -251,7 +251,7 @@
       > Has <span class="font-bold">{$activeLimpets}</span> active limpets to collect <span class="font-bold">~{$fragments}</span> fragments
     </p>
     <p>
-      > PD had margin for <span class="font-bold">{$pdSurplus.toFixed(0)}</span> additional fragments before empty
+      > PD had margin for <span class="font-bold">{$pdSurplus === Infinity ? "∞" : $pdSurplus.toFixed(0)}</span> additional fragments before empty
     </p>
     <p>
       > Requires cargo hatch to be within <span class="font-bold">{$hatchDistance.toFixed(0)}m</span> of the rock face
